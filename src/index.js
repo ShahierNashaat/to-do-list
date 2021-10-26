@@ -1,20 +1,50 @@
-import _ from 'lodash';
 import './style.css';
 
-function component() {
-  const element = document.createElement('div');
-  const h2 = document.createElement('h2');
-  const btn = document.createElement('button');
+const toDoTasks = [
+  {
+    description: 'Wash the dishes',
+    completed: false,
+    index: 2,
+  },
+  {
+    description: 'Finish To Do List project',
+    completed: false,
+    index: 1,
+  },
+  {
+    description: 'Atted The Standup Team',
+    completed: false,
+    index: 0,
+  },
+];
 
-  h2.innerHTML = _.join(['Hello', 'shahier'], ' ');
+const renderList = () => {
+  toDoTasks.sort((task1, task2) => task1.index - task2.index);
 
-  element.appendChild(h2);
+  const toDoListUL = document.querySelector('ul');
 
-  btn.innerHTML = 'Click me and check the console!';
+  for (let i = 0; i < toDoTasks.length; i += 1) {
+    const li = document.createElement('li');
+    toDoListUL.appendChild(li);
 
-  element.appendChild(btn);
+    const checkboxAndTaskDiv = document.createElement('div');
+    checkboxAndTaskDiv.classList.add('checkbox-task');
+    li.appendChild(checkboxAndTaskDiv);
 
-  return element;
-}
+    const checkBox = document.createElement('input');
+    checkBox.setAttribute('type', 'checkbox');
+    checkBox.checked = toDoTasks[i].completed;
+    checkboxAndTaskDiv.appendChild(checkBox);
 
-document.body.appendChild(component());
+    const taskParagraph = document.createElement('p');
+    taskParagraph.textContent = toDoTasks[i].description;
+    checkboxAndTaskDiv.appendChild(taskParagraph);
+
+    const moreIcon = document.createElement('i');
+    moreIcon.classList.add('fas');
+    moreIcon.classList.add('fa-ellipsis-v');
+    li.appendChild(moreIcon);
+  }
+};
+
+renderList();

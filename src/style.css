@@ -1,3 +1,113 @@
 body {
-  background-color: bisque;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  color: rgb(71, 71, 71);
+}
+
+.container {
+  width: 90%;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.container > * {
+  border-bottom: 1px solid rgb(165, 165, 165);
+  padding: 10px;
+}
+
+::placeholder {
+  color: gray;
+  font-style: italic;
+}
+
+.container .add-area input {
+  border: 0;
+  font-size: 20px;
+  width: 100%;
+}
+
+.container ul li .checkbox-task input {
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #d5d5d5;
+  border-radius: 3px;
+  position: relative;
+}
+
+.container .add-area > input:focus {
+  outline: none;
+}
+
+.container ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.container ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px;
+  border-bottom: 1px solid rgb(165, 165, 165);
+}
+
+.container ul li .checkbox-task {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.container ul li .checkbox-task input::after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  width: 50%;
+  height: 25%;
+  border-bottom: 4px solid white;
+  border-left: 4px solid white;
+  border-radius: 20%;
+  transform: rotate(-45deg);
+  display: none;
+}
+
+.container ul li .checkbox-task input:checked {
+  background-color: rgb(19, 150, 19);
+}
+
+.container ul li .checkbox-task input:checked::after {
+  display: block;
+}
+
+.container ul li .checkbox-task p {
+  color: rgb(71, 71, 71);
+  font-size: 20px;
+}
+
+.container ul li i {
+  cursor: pointer;
+  color: rgb(71, 71, 71);
+}
+
+.container button {
+  align-self: center;
+  margin: 20px 0;
+  font-size: 20px;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
+  color: rgb(71, 71, 71);
+}
+
+.container button:hover {
+  text-decoration: underline;
 }
