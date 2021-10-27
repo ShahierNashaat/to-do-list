@@ -1,6 +1,7 @@
 import './style.css';
+import taskStatusChange from './task_status_change.js';
 
-const toDoTasks = [
+var toDoTasks = [
   {
     description: 'Wash the dishes',
     completed: false,
@@ -18,7 +19,26 @@ const toDoTasks = [
   },
 ];
 
+const createTheLocalStorage = (dataName, data) => {
+  const strdata = JSON.stringify(data);
+  localStorage.setItem(dataName, strdata);
+};
+
+const getDataFromLocalStorage = (dataName) => {
+  if(localStorage.getItem(dataName) == null) {
+    return null;
+  }
+  return JSON.parse(localStorage.getItem(dataName));
+}
+
 const renderList = () => {
+  if(getDataFromLocalStorage('toDoTasks') == null)
+  {
+    createTheLocalStorage('toDoTasks', toDoTasks);
+  }
+
+  toDoTasks = getDataFromLocalStorage('toDoTasks');
+
   toDoTasks.sort((task1, task2) => task1.index - task2.index);
 
   const toDoListUL = document.querySelector('ul');
@@ -34,6 +54,7 @@ const renderList = () => {
     const checkBox = document.createElement('input');
     checkBox.setAttribute('type', 'checkbox');
     checkBox.checked = toDoTasks[i].completed;
+    checkBox.addEventListener('change', taskStatusChange);
     checkboxAndTaskDiv.appendChild(checkBox);
 
     const taskParagraph = document.createElement('p');
