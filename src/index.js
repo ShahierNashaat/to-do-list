@@ -1,7 +1,9 @@
-import './style.css';
-import taskStatusChange from './task_status_change.js';
+/* eslint-disable import/extensions */
 
-var toDoTasks = [
+import taskStatusChange from './task_status_change.js';
+import './style.css';
+
+let toDoTasks = [
   {
     description: 'Wash the dishes',
     completed: false,
@@ -25,15 +27,14 @@ const createTheLocalStorage = (dataName, data) => {
 };
 
 const getDataFromLocalStorage = (dataName) => {
-  if(localStorage.getItem(dataName) == null) {
+  if (localStorage.getItem(dataName) == null) {
     return null;
   }
   return JSON.parse(localStorage.getItem(dataName));
-}
+};
 
 const renderList = () => {
-  if(getDataFromLocalStorage('toDoTasks') == null)
-  {
+  if (getDataFromLocalStorage('toDoTasks') == null) {
     createTheLocalStorage('toDoTasks', toDoTasks);
   }
 
