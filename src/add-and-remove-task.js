@@ -45,7 +45,7 @@ const editTask = (taskDescription, index) => {
 const deleteTask = (index) => {
   let toDoTasks = localStorageController.getDataFromLocalStorage('toDoTasks');
 
-  toDoTasks = toDoTasks.filter((task) => task.index != toDoTasks[index].index);
+  toDoTasks = toDoTasks.filter((task) => task.index !== toDoTasks[index].index);
 
   localStorageController.createTheLocalStorage('toDoTasks', toDoTasks);
   updateListIndexes();

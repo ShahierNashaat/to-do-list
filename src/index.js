@@ -84,12 +84,11 @@ clearCompletedTasksButton.addEventListener('click', () => {
   renderList();
 });
 
-document.addEventListener("click", (e) => {
-  if(e.target == null) {
+document.addEventListener('click', (e) => {
+  if (e.target == null) {
     return;
   }
-  if(e.target !== e.target.parentNode.querySelector('.checkbox-task input[type="text"]') && e.target !== e.target.parentNode.querySelector('.fa-trash-alt') && e.target !== e.target.parentNode.querySelector('.fa-ellipsis-v') && e.target !== e.target.parentNode.querySelector('input[type="checkbox"]'))
-  {
+  if (e.target !== e.target.parentNode.querySelector('.checkbox-task input[type="text"]') && e.target !== e.target.parentNode.querySelector('.fa-trash-alt') && e.target !== e.target.parentNode.querySelector('.fa-ellipsis-v') && e.target !== e.target.parentNode.querySelector('input[type="checkbox"]')) {
     renderList();
   }
 });
