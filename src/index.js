@@ -43,7 +43,6 @@ const renderList = () => {
     editTaskDescriptionInput.setAttribute('type', 'text');
     editTaskDescriptionInput.addEventListener('blur', (e) => {
       addAndRemoveTask.editTask(e.currentTarget.value, i);
-      renderList();
     });
     checkboxAndTaskDiv.appendChild(editTaskDescriptionInput);
 
@@ -54,7 +53,9 @@ const renderList = () => {
     const moreIcon = document.createElement('i');
     moreIcon.classList.add('fas');
     moreIcon.classList.add('fa-ellipsis-v');
-    moreIcon.addEventListener('click', addAndRemoveTask.renderEditAndDeleteArea);
+    moreIcon.addEventListener('click', (e) => {
+      addAndRemoveTask.renderEditAndDeleteArea(e);
+    });
     li.appendChild(moreIcon);
 
     const deleteIcon = document.createElement('i');
@@ -81,4 +82,14 @@ const clearCompletedTasksButton = document.querySelector('.container button');
 clearCompletedTasksButton.addEventListener('click', () => {
   addAndRemoveTask.clearCompletedTasks();
   renderList();
+});
+
+document.addEventListener("click", (e) => {
+  if(e.target == null) {
+    return;
+  }
+  if(e.target !== e.target.parentNode.querySelector('.checkbox-task input[type="text"]') && e.target !== e.target.parentNode.querySelector('.fa-trash-alt') && e.target !== e.target.parentNode.querySelector('.fa-ellipsis-v') && e.target !== e.target.parentNode.querySelector('input[type="checkbox"]'))
+  {
+    renderList();
+  }
 });

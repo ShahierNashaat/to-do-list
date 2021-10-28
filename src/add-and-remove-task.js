@@ -5,7 +5,7 @@ const updateListIndexes = () => {
   toDoTasks.sort((task1, task2) => task1.index - task2.index);
 
   for (let i = 0; i < toDoTasks.length; i += 1) {
-    toDoTasks[i].index = i;
+    toDoTasks[i].index = i + 1;
   }
   localStorageController.createTheLocalStorage('toDoTasks', toDoTasks);
 };
@@ -20,12 +20,13 @@ const addTask = (taskDescription) => {
   const task = {
     description: taskDescription,
     completed: false,
-    index: toDoTasks.length,
+    index: toDoTasks.length + 1,
   };
 
   toDoTasks.push(task);
 
   localStorageController.createTheLocalStorage('toDoTasks', toDoTasks);
+
   updateListIndexes();
 };
 
@@ -42,9 +43,9 @@ const editTask = (taskDescription, index) => {
 };
 
 const deleteTask = (index) => {
-  const toDoTasks = localStorageController.getDataFromLocalStorage('toDoTasks');
+  let toDoTasks = localStorageController.getDataFromLocalStorage('toDoTasks');
 
-  toDoTasks.splice(index);
+  toDoTasks = toDoTasks.filter((task) => task.index != toDoTasks[index].index);
 
   localStorageController.createTheLocalStorage('toDoTasks', toDoTasks);
   updateListIndexes();
