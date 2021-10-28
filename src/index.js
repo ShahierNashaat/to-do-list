@@ -1,48 +1,23 @@
 /* eslint-disable import/extensions */
 
+import localStorageController from './localStorage-controller.js';
 import taskStatusChange from './task_status_change.js';
+import addAndRemoveTask from './add-and-remove-task';
 import './style.css';
 
-let toDoTasks = [
-  {
-    description: 'Wash the dishes',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'Finish To Do List project',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Atted The Standup Team',
-    completed: false,
-    index: 0,
-  },
-];
-
-const createTheLocalStorage = (dataName, data) => {
-  const strdata = JSON.stringify(data);
-  localStorage.setItem(dataName, strdata);
-};
-
-const getDataFromLocalStorage = (dataName) => {
-  if (localStorage.getItem(dataName) == null) {
-    return null;
-  }
-  return JSON.parse(localStorage.getItem(dataName));
-};
+let toDoTasks = [];
 
 const renderList = () => {
-  if (getDataFromLocalStorage('toDoTasks') == null) {
-    createTheLocalStorage('toDoTasks', toDoTasks);
+  if (localStorageController.getDataFromLocalStorage('toDoTasks') == null) {
+    localStorageController.createTheLocalStorage('toDoTasks', toDoTasks);
   }
 
-  toDoTasks = getDataFromLocalStorage('toDoTasks');
+  toDoTasks = localStorageController.getDataFromLocalStorage('toDoTasks');
 
   toDoTasks.sort((task1, task2) => task1.index - task2.index);
 
   const toDoListUL = document.querySelector('ul');
+  toDoListUL.innerHTML = '';
 
   for (let i = 0; i < toDoTasks.length; i += 1) {
     const li = document.createElement('li');
@@ -62,11 +37,48 @@ const renderList = () => {
     taskParagraph.textContent = toDoTasks[i].description;
     checkboxAndTaskDiv.appendChild(taskParagraph);
 
+    const editTaskDescriptionInput = document.createElement('input');
+    editTaskDescriptionInput.value = toDoTasks[i].description;
+    editTaskDescriptionInput.classList.add('display-none');
+    editTaskDescriptionInput.setAttribute('type', 'text');
+    editTaskDescriptionInput.addEventListener('blur', (e) => {
+      addAndRemoveTask.editTask(e.currentTarget.value, i);
+      renderList();
+    });
+    checkboxAndTaskDiv.appendChild(editTaskDescriptionInput);
+
+    if (toDoTasks[i].completed) {
+      taskParagraph.classList.add('completed');
+    }
+
     const moreIcon = document.createElement('i');
     moreIcon.classList.add('fas');
     moreIcon.classList.add('fa-ellipsis-v');
+    moreIcon.addEventListener('click', addAndRemoveTask.renderEditAndDeleteArea);
     li.appendChild(moreIcon);
+
+    const deleteIcon = document.createElement('i');
+    deleteIcon.classList.add('fas');
+    deleteIcon.classList.add('fa-trash-alt');
+    deleteIcon.classList.add('display-none');
+    deleteIcon.addEventListener('click', () => {
+      addAndRemoveTask.deleteTask(i);
+      renderList();
+    });
+    li.appendChild(deleteIcon);
   }
 };
 
 renderList();
+
+const addButton = document.querySelector('.fa-plus');
+addButton.addEventListener('click', () => {
+  addAndRemoveTask.addTask(addButton.previousElementSibling.value);
+  renderList();
+});
+
+const clearCompletedTasksButton = document.querySelector('.container button');
+clearCompletedTasksButton.addEventListener('click', () => {
+  addAndRemoveTask.clearCompletedTasks();
+  renderList();
+});

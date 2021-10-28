@@ -1,10 +1,18 @@
+import localStorageController from './localStorage-controller';
+
 export default function taskStatusChange(e) {
-  const toDoTasks = JSON.parse(localStorage.getItem('toDoTasks'));
-  const taskDescription = e.currentTarget.nextElementSibling.textContent;
-  const toDoTask = toDoTasks.filter((task) => task.description === taskDescription)[0];
+  const toDoTasks = localStorageController.getDataFromLocalStorage('toDoTasks');
+  const taskDescription = e.currentTarget.nextElementSibling;
+  const toDoTask = toDoTasks.filter((task) => task.description === taskDescription.textContent)[0];
   const taskindex = toDoTasks.indexOf(toDoTask);
 
   toDoTasks[taskindex].completed = e.target.checked;
 
-  localStorage.setItem('toDoTasks', JSON.stringify(toDoTasks));
+  if (e.target.checked) {
+    taskDescription.classList.add('completed');
+  } else {
+    taskDescription.classList.remove('completed');
+  }
+
+  localStorageController.createTheLocalStorage('toDoTasks', toDoTasks);
 }

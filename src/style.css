@@ -2,12 +2,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - 50px);
   font-family: Arial, Helvetica, sans-serif;
+  padding: 10px 0;
+}
+
+body input[type="text"] {
+  outline: none;
 }
 
 h1 {
   color: rgb(71, 71, 71);
+  margin-bottom: 10px;
 }
 
 .container {
@@ -30,20 +36,26 @@ h1 {
 .container .add-area input {
   border: 0;
   font-size: 20px;
-  width: 100%;
+  width: 96%;
 }
 
-.container ul li .checkbox-task input {
+.container ul li i {
+  cursor: pointer;
+  color: rgb(71, 71, 71);
+}
+
+.container .add-area i {
+  cursor: pointer;
+  color: rgb(71, 71, 71);
+}
+
+.container ul li .checkbox-task input[type="checkbox"] {
   appearance: none;
   width: 25px;
   height: 25px;
   border: 1px solid #d5d5d5;
   border-radius: 3px;
   position: relative;
-}
-
-.container .add-area > input:focus {
-  outline: none;
 }
 
 .container ul {
@@ -64,9 +76,10 @@ h1 {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-grow: 9;
 }
 
-.container ul li .checkbox-task input::after {
+.container ul li .checkbox-task input[type="checkbox"]::after {
   content: "";
   position: absolute;
   top: 20%;
@@ -80,22 +93,23 @@ h1 {
   display: none;
 }
 
-.container ul li .checkbox-task input:checked {
+.container ul li .checkbox-task input[type="checkbox"]:checked {
   background-color: rgb(19, 150, 19);
 }
 
-.container ul li .checkbox-task input:checked::after {
+.container ul li .checkbox-task input[type="checkbox"]:checked::after {
   display: block;
+}
+
+.container ul li .checkbox-task input[type="text"] {
+  width: 100%;
+  border: none;
+  font-size: 20px;
 }
 
 .container ul li .checkbox-task p {
   color: rgb(71, 71, 71);
   font-size: 20px;
-}
-
-.container ul li i {
-  cursor: pointer;
-  color: rgb(71, 71, 71);
 }
 
 .container button {
@@ -110,4 +124,12 @@ h1 {
 
 .container button:hover {
   text-decoration: underline;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+.display-none {
+  display: none;
 }
