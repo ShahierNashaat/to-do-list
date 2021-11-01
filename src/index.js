@@ -36,6 +36,9 @@ const renderList = () => {
     const taskParagraph = document.createElement('p');
     taskParagraph.textContent = toDoTasks[i].description;
     checkboxAndTaskDiv.appendChild(taskParagraph);
+    if (toDoTasks[i].completed) {
+      taskParagraph.classList.add('completed');
+    }
 
     const editTaskDescriptionInput = document.createElement('input');
     editTaskDescriptionInput.value = toDoTasks[i].description;
@@ -45,10 +48,6 @@ const renderList = () => {
       addAndRemoveTask.editTask(e.currentTarget.value, i);
     });
     checkboxAndTaskDiv.appendChild(editTaskDescriptionInput);
-
-    if (toDoTasks[i].completed) {
-      taskParagraph.classList.add('completed');
-    }
 
     const moreIcon = document.createElement('i');
     moreIcon.classList.add('fas');
@@ -75,6 +74,7 @@ renderList();
 const addButton = document.querySelector('.fa-plus');
 addButton.addEventListener('click', () => {
   addAndRemoveTask.addTask(addButton.previousElementSibling.value);
+  addButton.previousElementSibling.value = "";
   renderList();
 });
 
