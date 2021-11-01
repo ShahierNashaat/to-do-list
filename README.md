@@ -12,9 +12,9 @@
 - JavaScript
 - Webpack
 
-<!-- ## Live Demo
+## Live Demo
 
-[Live Demo Link](https://livedemo.com) -->
+[Live Demo Link](https://shahiernashaat.github.io/to-do-list/)
 
 
 ## Getting Started
