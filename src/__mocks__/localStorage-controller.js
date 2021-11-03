@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 let tasksArr = [
   {
     description: 'task1',
@@ -15,8 +17,6 @@ const createTheLocalStorage = (dataName, data) => {
   tasksArr = [...data];
 };
 
-const getDataFromLocalStorage = (dataName) => {
-  return tasksArr;
-};
+const getDataFromLocalStorage = (dataName) => tasksArr;
 
 export default { createTheLocalStorage, getDataFromLocalStorage };

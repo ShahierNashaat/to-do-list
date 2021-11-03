@@ -74,7 +74,7 @@ renderList();
 const addButton = document.querySelector('.fa-plus');
 addButton.addEventListener('click', () => {
   addAndRemoveTask.addTask(addButton.previousElementSibling.value);
-  addButton.previousElementSibling.value = "";
+  addButton.previousElementSibling.value = '';
   renderList();
 });
 

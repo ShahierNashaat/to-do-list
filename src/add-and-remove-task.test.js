@@ -1,16 +1,14 @@
-jest.mock('./localStorage-controller');
-
 import localStorageController from './__mocks__/localStorage-controller';
-import taskController from './add-and-remove-task.js';
+import taskController from './add-and-remove-task';
+
+jest.mock('./localStorage-controller');
 
 describe('to do list add and delete', () => {
   test('Add new task', () => {
-    let tasksArr = localStorageController.getDataFromLocalStorage('dum');
-
-    expect(taskController.addTask('task'+(tasksArr.length+1))).toHaveLength(tasksArr.length + 1);
+    const tasksArr = localStorageController.getDataFromLocalStorage('dum');
+    expect(taskController.addTask(`task${tasksArr.length + 1}`)).toHaveLength(3);
   });
   test('Delete task', () => {
-
-    expect(taskController.deleteTask(0)).toHaveLength(1);
+    expect(taskController.deleteTask(0)).toHaveLength(2);
   });
 });

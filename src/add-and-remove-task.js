@@ -12,7 +12,7 @@ const updateListIndexes = () => {
 
 const addTask = (taskDescription) => {
   if (taskDescription === '') {
-    return;
+    return localStorageController.getDataFromLocalStorage('toDoTasks');
   }
 
   const toDoTasks = localStorageController.getDataFromLocalStorage('toDoTasks');
@@ -28,6 +28,7 @@ const addTask = (taskDescription) => {
   localStorageController.createTheLocalStorage('toDoTasks', toDoTasks);
 
   updateListIndexes();
+
   return toDoTasks;
 };
 
