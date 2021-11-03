@@ -30,7 +30,7 @@ const renderList = () => {
     const checkBox = document.createElement('input');
     checkBox.setAttribute('type', 'checkbox');
     checkBox.checked = toDoTasks[i].completed;
-    checkBox.addEventListener('change', (e) => { 
+    checkBox.addEventListener('change', (e) => {
       const taskDescription = e.currentTarget.nextElementSibling;
       taskStatusChange(i, e.target.checked);
       if (e.target.checked) {
@@ -82,7 +82,7 @@ renderList();
 const addButton = document.querySelector('.fa-plus');
 addButton.addEventListener('click', () => {
   addAndRemoveTask.addTask(addButton.previousElementSibling.value);
-  addButton.previousElementSibling.value = "";
+  addButton.previousElementSibling.value = '';
   renderList();
 });
 

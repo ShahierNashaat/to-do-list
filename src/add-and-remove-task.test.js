@@ -16,8 +16,8 @@ describe('to do list testing', () => {
     expect(taskController.editTask('task1', 0)).toBe('task1');
   });
   test('Clear completed tasks', () => {
-    let tasksArr = taskController.clearCompletedTasks();
-    let filteredArr = tasksArr.filter((task) => task.completed);
+    const tasksArr = taskController.clearCompletedTasks();
+    const filteredArr = tasksArr.filter((task) => task.completed);
     expect(filteredArr).toHaveLength(0);
   });
   test('Complete task true or false', () => {
@@ -30,4 +30,3 @@ describe('to do list testing', () => {
     expect(filteredArr).toHaveLength(0);
   });
 });
-

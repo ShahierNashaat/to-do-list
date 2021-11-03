@@ -34,7 +34,7 @@ const addTask = (taskDescription) => {
 
 const editTask = (taskDescription, index) => {
   if (taskDescription === '') {
-    return;
+    return localStorageController.getDataFromLocalStorage('toDoTasks');
   }
 
   const toDoTasks = localStorageController.getDataFromLocalStorage('toDoTasks');
