@@ -9,4 +9,8 @@ describe('to do list add and delete', () => {
 
     expect(taskController.addTask('task'+(tasksArr.length+1))).toHaveLength(tasksArr.length + 1);
   });
+  test('Delete task', () => {
+
+    expect(taskController.deleteTask(0)).toHaveLength(1);
+  });
 });
