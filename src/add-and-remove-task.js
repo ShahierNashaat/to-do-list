@@ -42,6 +42,7 @@ const editTask = (taskDescription, index) => {
   toDoTasks[index].description = taskDescription;
 
   localStorageController.createTheLocalStorage('toDoTasks', toDoTasks);
+  return toDoTasks[index].description;
 };
 
 const deleteTask = (index) => {
@@ -61,6 +62,7 @@ const clearCompletedTasks = () => {
 
   localStorageController.createTheLocalStorage('toDoTasks', toDoTasks);
   updateListIndexes();
+  return toDoTasks;
 };
 
 const renderEditAndDeleteArea = (e) => {
