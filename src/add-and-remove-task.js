@@ -28,6 +28,7 @@ const addTask = (taskDescription) => {
   localStorageController.createTheLocalStorage('toDoTasks', toDoTasks);
 
   updateListIndexes();
+  return toDoTasks;
 };
 
 const editTask = (taskDescription, index) => {
@@ -49,6 +50,7 @@ const deleteTask = (index) => {
 
   localStorageController.createTheLocalStorage('toDoTasks', toDoTasks);
   updateListIndexes();
+  return toDoTasks;
 };
 
 const clearCompletedTasks = () => {
