@@ -42,7 +42,7 @@ const editTask = (taskDescription, index) => {
   toDoTasks[index].description = taskDescription;
 
   localStorageController.createTheLocalStorage('toDoTasks', toDoTasks);
-  return toDoTasks[index].description;
+  return toDoTasks[index];
 };
 
 const deleteTask = (index) => {
