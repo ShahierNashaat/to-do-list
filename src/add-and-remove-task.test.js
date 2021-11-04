@@ -1,5 +1,6 @@
 import localStorageController from './__mocks__/localStorage-controller';
 import taskController from './add-and-remove-task';
+import taskStatusChange from './task_status_change';
 
 jest.mock('./localStorage-controller');
 
@@ -22,5 +23,13 @@ describe('to do list testing', () => {
 
     expect(filteredCompletedArr).toHaveLength(0);
     expect(filteredNotCompletedArr).toHaveLength(tasksArr.length);
+  });
+  test('Complete task true or false', () => {
+    let tasksArr = taskStatusChange(0, true);
+    let filteredArr = tasksArr.filter((task) => task.completed);
+    expect(filteredArr).toHaveLength(1);
+    tasksArr = taskStatusChange(0, false);
+    filteredArr = tasksArr.filter((task) => task.completed);
+    expect(filteredArr).toHaveLength(0);
   });
 });
